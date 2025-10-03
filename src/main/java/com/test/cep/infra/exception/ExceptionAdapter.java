@@ -13,4 +13,9 @@ public class ExceptionAdapter implements ExceptionContract {
     public RuntimeException badRequest(String mess) {
         return this.operationStatusCode.BadRequesteError(mess);
     }
+
+    @Override
+    public RuntimeException internalServe(String mess) {
+        return this.operationStatusCode.InternalServeError(mess);
+    }
 }
