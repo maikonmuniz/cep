@@ -19,7 +19,7 @@ public class CepServices {
         if (cep.length() != 8) throw this.exceptionAdapter.badRequest("Campo cep deve ter 8 dígitos!");
 
         try {
-            return this.apiAdapter.Get(cep);
+            return this.apiAdapter.get(cep);
         } catch (Exception exception) {
             throw this.exceptionAdapter.internalServe("Erro ao processar o CEP: " + exception.getMessage());
         }
