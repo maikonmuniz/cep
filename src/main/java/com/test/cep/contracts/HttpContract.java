@@ -1,5 +1,5 @@
 package com.test.cep.contracts;
 
-public interface CepContract {
-    Object Get ();
+public interface HttpContract {
+    Object Get (String data);
 }
