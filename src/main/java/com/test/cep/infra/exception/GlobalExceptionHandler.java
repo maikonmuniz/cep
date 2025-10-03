@@ -1,4 +1,4 @@
-package com.test.cep.infra.exception.implementation;
+package com.test.cep.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
