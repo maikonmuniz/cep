@@ -13,7 +13,7 @@ public class ApiAdapter implements HttpContract {
     }
 
     @Override
-    public Object Get(String cep) {
+    public String Get(String cep) {
         String url = "https://viacep.com.br/ws/" + cep + "/json/";
         ResponseEntity<String> resp = this.api.getForEntity(url, String.class);
         return resp.getBody();

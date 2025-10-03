@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/api/cep")
+@RequestMapping("/cep")
 public class CepController {
     @Autowired
     private CepServices cepServices;
 
     @GetMapping("/{cep}")
-    public Object consultCep(@PathVariable String cep) {
-        Object result = this.cepServices.execute(cep);
+    public String consultCep(@PathVariable String cep) {
+        String result = this.cepServices.execute(cep);
         return result;
     }
 }
