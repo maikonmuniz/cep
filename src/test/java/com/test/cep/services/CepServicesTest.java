@@ -48,6 +48,14 @@ class CepServicesTest {
     }
 
     @Test
+    void testExecute_withCepLengthNotEqualTo8_shouldThrowBadRequestException() {
+        String cep = "123456";
+        when(exceptionAdapter.badRequest(anyString())).thenThrow(new RuntimeException("Campo cep deve ter 8 dígitos!"));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> cepServices.execute(cep));
+        assertEquals("Campo cep deve ter 8 dígitos!", exception.getMessage());
+    }
+
+    @Test
     void testExecute_withValidCep_shouldCallApiAdapter() {
         String cep = "12345678";
         when(apiAdapter.Get(cep)).thenReturn("Resultado da API");
