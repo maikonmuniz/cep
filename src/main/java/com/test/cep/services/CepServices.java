@@ -14,9 +14,8 @@ public class CepServices {
     }
 
     public Object execute (String cep) {
-        if (cep == null || cep.isEmpty()) {
-            throw this.exceptionAdapter.badRequest("Campo cep está em branco!");
-        }
+        if (cep == null || cep.isEmpty()) throw this.exceptionAdapter.badRequest("Campo cep está em branco!");
+        if (!cep.matches("\\d+")) throw this.exceptionAdapter.badRequest("Campo cep deve conter apenas números!");
         return this.apiAdapter.Get(cep);
     }
 }
