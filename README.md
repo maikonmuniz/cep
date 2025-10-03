@@ -3,6 +3,9 @@ Teste para empresa nuclea.
 
 Alguns padrões de projetos foi implementado como o adapter e arquitetura hexagonal.
 
+```text
+JDK 21
+```
 Rota
 ```http
 GET http://localhost:8080/cep/01001000
