@@ -17,6 +17,12 @@ public class CepServices {
         if (cep == null || cep.isEmpty()) throw this.exceptionAdapter.badRequest("Campo cep está em branco!");
         if (!cep.matches("\\d+")) throw this.exceptionAdapter.badRequest("Campo cep deve conter apenas números!");
         if (cep.length() != 8) throw this.exceptionAdapter.badRequest("Campo cep deve ter 8 dígitos!");
-        return this.apiAdapter.Get(cep);
+
+        try {
+            var result = this.apiAdapter.Get(cep);
+            return result;
+        } catch (Exception exception) {
+            throw this.exceptionAdapter.internalServe("Erro ao processar o CEP: " + exception.getMessage());
+        }
     }
 }

@@ -64,4 +64,14 @@ class CepServicesTest {
         assertEquals("Resultado da API", result);
         verify(apiAdapter).Get(cep);
     }
+
+    @Test
+    void testExecute_withApiAdapterException_shouldThrowInternalServerError() {
+        String cep = "12345678";
+        when(apiAdapter.Get(cep)).thenThrow(new RuntimeException("Erro na API"));
+        when(exceptionAdapter.internalServe(anyString())).thenReturn(new RuntimeException("Erro ao processar o CEP: Erro na API"));
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> cepServices.execute(cep));
+        assertEquals("Erro ao processar o CEP: Erro na API", exception.getMessage());
+    }
 }
