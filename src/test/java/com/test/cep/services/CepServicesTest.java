@@ -35,9 +35,16 @@ class CepServicesTest {
     void testExecute_withEmptyCep_shouldThrowBadRequestException() {
         String cep = "";
         when(exceptionAdapter.badRequest(anyString())).thenThrow(new RuntimeException("Campo cep está em branco!"));
-
         RuntimeException exception = assertThrows(RuntimeException.class, () -> cepServices.execute(cep));
         assertEquals("Campo cep está em branco!", exception.getMessage());
+    }
+
+    @Test
+    void testExecute_withInvalidCep_shouldThrowBadRequestException() {
+        String cep = "1234ABCD";
+        when(exceptionAdapter.badRequest(anyString())).thenThrow(new RuntimeException("Campo cep deve conter apenas números!"));
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> cepServices.execute(cep));
+        assertEquals("Campo cep deve conter apenas números!", exception.getMessage());
     }
 
     @Test
